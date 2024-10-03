@@ -8,11 +8,22 @@ local function Main()
     repeat
         turtle.suckUp();
         if turtle.getItemCount() ~= 0 then
-
+            local item = turtle.getItemDetail();
+            if item.name == "lightmanscurrency:coin_copper" then
+                OpenGate()
+            else
+                turtle.turnLeft()
+                turtle.drop();
+                turtle.turnRight();
+                sleep(1);
+            end
         end
     until false
 end
 
 repeat
-    pcall(Main)
+    local _, reason = pcall(Main);
+    if reason == "Terminated" then
+        return;
+    end
 until false
