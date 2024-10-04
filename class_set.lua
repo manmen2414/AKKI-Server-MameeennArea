@@ -32,5 +32,23 @@ return {
         callRemote = function(remotename, method, ...) return "" end,
         ---@return string|nil
         getNameLocal = function() return "" end,
+    },
+    ---@class ReadStream
+    readStream = {
+        close = function() end,
+        read = function() return "" end,
+        readAll = function() return "" end,
+        readLine = function() return "" end,
+        seek = function() return -1 end
+    },
+    ---@class WriteStream
+    writeStream = {
+        close = function() end,
+        ---@param str string
+        write = function(str) end,
+        seek = function() return -1 end,
+        flush = function() end,
+        ---@param line string
+        writeLine = function(line) end,
     }
 }
