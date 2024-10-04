@@ -1,7 +1,7 @@
 local function OpenGate()
     redstone.setOutput("front", true)
     turtle.dropDown();
-    sleep(0.5);
+    sleep(0.75);
     redstone.setOutput("front", false)
 end
 local function Main()
