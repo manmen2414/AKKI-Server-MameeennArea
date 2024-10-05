@@ -1,0 +1,12 @@
+{
+    "gate_to_server":{
+        "position":[0,0,0],
+        "player":"AM_107ryu",
+        "station_name":"MameeennArea",
+        "go_inside":true,
+        "payed":"1c"
+    },
+    "app_to_station_request":{
+        
+    }
+}
