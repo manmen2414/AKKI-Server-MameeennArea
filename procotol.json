@@ -6,7 +6,22 @@
         "go_inside":true,
         "payed":"1c"
     },
-    "app_to_station_request":{
-        
+    "app_to_station":{
+        "position":[0,0,0],
+        "request":"station_info",
+        "at":"MameeennArea"
+    },
+    "station_to_app":{
+        "position":[0,0,0],
+        "station_name":"MameeennArea",
+        "infomation":{
+            "trains":[{
+                "pratform":1,
+                "left_second":30,
+                "name":"xxx",
+                "registed":true
+            }],
+            "incoming_train":true
+        }
     }
 }
