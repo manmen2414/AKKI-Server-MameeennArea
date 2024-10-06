@@ -10,7 +10,7 @@ return {
         closeAll = function() return end,
         ---@param channel integer
         ---@param replyChannel integer
-        ---@param payload integer
+        ---@param payload number|integer|string|boolean|table
         transmit = function(channel, replyChannel, payload) return end,
         iswireless = function() return false end,
         ---@return ...
@@ -32,6 +32,104 @@ return {
         callRemote = function(remotename, method, ...) return "" end,
         ---@return string|nil
         getNameLocal = function() return "" end,
+    },
+    ---@class PlayerDetector
+    playerDetector = {
+        ---@param username string
+        ---@return {dimension: string,eyeHeight: number,pitch: number,health: number,maxHealth: number,airSupply: number,respawnPosition: number,respawnDimension: number,respawnAngle: number,yaw: number,x: number,y: number,z: number}
+        getPlayerPos = function(username)
+            return {};
+        end,
+        getOnlinePlayers = function() return {} end,
+        ---@param range number
+        ---@return string[]
+        getPlayersInRange = function(range) return {} end,
+        ---@param posOne {x:number,y:number,z:number}
+        ---@param posTwo {x:number,y:number,z:number}
+        ---@return string[]
+        getPlayersInCoords = function(posOne, posTwo) return {} end,
+        ---@return boolean
+        ---@param w number
+        ---@param h number
+        ---@param d number
+        getPlayersInCubic = function(w, h, d) return false end,
+        ---@param range number
+        ---@param username string
+        ---@return boolean
+        isPlayerInRange = function(range, username) return false end,
+        ---@param posOne {x:number,y:number,z:number}
+        ---@param posTwo {x:number,y:number,z:number}
+        ---@param username string
+        ---@return boolean
+        isPlayerInCoords = function(posOne, posTwo, username) return false end,
+        ---@return boolean
+        ---@param w number
+        ---@param h number
+        ---@param d number
+        isPlayerInCubic = function(w, h, d) return false end,
+        ---@param range number
+        ---@return boolean
+        isPlayersInRange = function(range, username) return false end,
+        ---@param posOne {x:number,y:number,z:number}
+        ---@param posTwo {x:number,y:number,z:number}
+        ---@return boolean
+        isPlayersInCoords = function(posOne, posTwo, username) return false end,
+        ---@return boolean
+        ---@param w number
+        ---@param h number
+        ---@param d number
+        isPlayersInCubic = function(w, h, d) return false end,
+    },
+    ---@class ChatBox
+    chatBox = {
+        ---@return true|nil,string?
+        ---@param message string
+        ---@param prefix string?
+        ---@param brackets string?
+        ---@param bracketColor string?
+        ---@param range number?
+        sendMessage = function(message, prefix, brackets, bracketColor, range) end,
+        ---@return true|nil,string?
+        ---@param message string
+        ---@param username string
+        ---@param prefix string?
+        ---@param brackets string?
+        ---@param bracketColor string?
+        ---@param range number?
+        sendMessageToPlayer = function(message, username, prefix, brackets, bracketColor, range) end,
+        ---@return true|nil,string?
+        ---@param json string
+        ---@param prefix string?
+        ---@param brackets string?
+        ---@param bracketColor string?
+        ---@param range number?
+        sendFormattedMessage = function(json, prefix, brackets, bracketColor, range) end,
+        ---@return true|nil,string?
+        ---@param json string
+        ---@param username string
+        ---@param prefix string?
+        ---@param brackets string?
+        ---@param bracketColor string?
+        ---@param range number?
+        sendFormattedMessageToPlayer = function(json, username, prefix, brackets, bracketColor, range) end,
+        ---@return true|nil,string?
+        ---@param message string
+        ---@param title string
+        ---@param username string
+        ---@param prefix string?
+        ---@param brackets string?
+        ---@param bracketColor string?
+        ---@param range number?
+        sendToastToPlayer = function(message, title, username, prefix, brackets, bracketColor, range) end,
+        ---@return true|nil,string?
+        ---@param json string
+        ---@param title string
+        ---@param username string
+        ---@param prefix string?
+        ---@param brackets string?
+        ---@param bracketColor string?
+        ---@param range number?
+        sendFormattedToastToPlayer = function(json, title, username, prefix, brackets, bracketColor, range) end,
     },
     ---@class ReadStream
     readStream = {
