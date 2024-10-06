@@ -1,4 +1,7 @@
 # AKKI-Server-MameeennArea
+
+![MameeennArea](https://raw.githubusercontent.com/manmen2414/AKKI-Server-MameeennArea/refs/heads/main/assets/test.png)
+
 MinecraftのModのCC: Tweakedを身内で遊ぶためのファイルを保存しておくリポジトリ。
 
 > [!WARNING]
