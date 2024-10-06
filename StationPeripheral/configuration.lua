@@ -29,7 +29,7 @@ term.setBackgroundColor(colors.brown)
 Potion.termSize():clear()
 GUI.Text(Potion.newVector2(getCenter(15), 1), "Station  Config")
 GUI.Text(Potion.newVector2(1, 3), "Station Name")
-GUI.Text(Potion.newVector2(1, 5), "Port")
+GUI.Text(Potion.newVector2(1, 5), "Port(default:64345)")
 local exitCenterPos = (" "):rep(getCenter(4) + 1);
 local Buttons = {
     GUI.Input(Potion.newSize(15, 3, 40, 3), config.stationName, colors.gray, colors.white, false, nil,
@@ -37,7 +37,7 @@ local Buttons = {
             config.stationName = value;
             setConfig();
         end),
-    GUI.Input(Potion.newSize(15, 5, 20, 5), tostring(config.port), colors.gray, colors.white, false, nil,
+    GUI.Input(Potion.newSize(22, 5, 27, 5), tostring(config.port), colors.gray, colors.white, false, nil,
         function(value)
             if tonumber(value) then
                 config.port = tonumber(value);
