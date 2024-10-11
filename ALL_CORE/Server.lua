@@ -7,7 +7,7 @@ local ClientRequestType = {
 }
 
 ---@enum ServerResponseType
-local ServerRequestType = {
+local ServerResponseType = {
     Established = 0,
     Response = 1,
     PasswordWrong = 2,
@@ -16,8 +16,23 @@ local ServerRequestType = {
 
 ---@enum ServerRequestType
 local ServerRequestType = {
-    NewPassword = 0,
+    NewPassword = 100,
 }
+
+---@type MameeennAreaServer
+local Server;
+
+---@param ... table
+function os.pullEvents(...)
+    local args = {...};
+    local parallelObject = {};
+    for event, func in pairs(args) do
+        parallelObject[#parallelObject+1] = function ()
+            func(os.pullEventRaw(event));
+        end
+    end
+    parallel.waitForAny(table.unpack(parallelObject));
+end
 
 ---@return MServerClient
 ---@param from string
@@ -27,13 +42,73 @@ local function newClient(from, pos)
     local MServerClient = {}
     MServerClient.name = from;
     MServerClient.position = pos;
+    MServerClient.id = MServerClient.name..os.epoch();
     MServerClient.alive = true;
+    MServerClient.password = ""..math.random();
+    MServerClient.leftPasswordTime = 10;
+    ---@param type ServerRequestType|ServerResponseType
+    ---@param content string|table
+    ---@param replyMessageID string?
+    function MServerClient:sendMessage(type,content,replyMessageID)
+        local isReply = not not replyMessageID;
+        local requestORresponse = isReply and "Response" or "Request";
+        local payload = {
+            [requestORresponse] = type,
+            ReplyMessageID = replyMessageID,
+            YourName=self.name,
+            YourPosition=self.position,
+            YourID=MServerClient.id,
+            From="ALLCORE",
+            Content=content,
+            ContentLength=#content,
+            MessageID=""..(os.epoch()+os.getComputerID()*1000);
+        }
+        Server:sendMessage(payload);
+    end
+    function MServerClient:sendNewPassword()
+        self.password = ""..math.random()..self.password;
+        if #self.password > 20 then
+            self.password=self.password:sub(1,20)
+        end
+        self:sendMessage(ServerRequestType.NewPassword,self.password)
+    end
+    function MServerClient:generateParallelFunction()
+        return function()
+            repeat
+                pcall(function()
+                    repeat
+                        os.startTimer(0.25)
+                        os.pullEvents({
+                            timer=function ()
+                                self.leftPasswordTime = self.leftPasswordTime-0.25;
+                                if self.leftPasswordTime <= 0 then
+                                    
+                                end
+                            end
+                        })
+                    until false
+                end)
+            until false
+        end
+    end
+
     return MServerClient;
 end
 
 return function(port)
     ---@class MameeennAreaServer
     local MServer = {};
-    MServer.established = 0;
+    Server=MServer;
+    ---@type MServerClient[]
+    MServer.established = {};
+    ---@type integer
     MServer.port = port;
+    ---@type Modem
+    MServer.modem = peripheral.find("modem",function (modem)
+        return modem.isWireless();
+    end);
+
+    function MServer:sendMessage(payload)
+        self.modem.transmit(self.port,0,payload)
+    end
 end

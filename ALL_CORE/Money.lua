@@ -19,16 +19,19 @@ return function()
         stream.write("{}");
         stream.close();
     end
+    function MMS.get(username)
+        return MMS.users[username] or 0;
+    end
     function MMS.set(username, value)
-        if value < 0 then
+        if MMS.get(username) < 0 then
             return PayInfo.NotEnoughMoney;
         end
         MMS.users[username] = value;
+        ---@type WriteStream
+        local stream = fs.open("money.json", "w");
+        stream.write(textutils.serialiseJSON(MMS.users));
+        stream.close();
         return PayInfo.Sucess;
-    end
-
-    function MMS.get(username)
-        return MMS.users[username] or 0;
     end
 
     function MMS.existMoney(username)
