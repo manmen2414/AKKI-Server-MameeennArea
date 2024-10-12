@@ -22,11 +22,9 @@ local ServerRequestType = {
 ---@type MameeennAreaServer
 local Server;
 
----@param ... table
-function os.pullEvents(...)
-    local args = {...};
+function os.pullEvents(events)
     local parallelObject = {};
-    for event, func in pairs(args) do
+    for event, func in pairs(events) do
         parallelObject[#parallelObject+1] = function ()
             func(os.pullEventRaw(event));
         end
@@ -61,7 +59,7 @@ local function newClient(from, pos)
             From="ALLCORE",
             Content=content,
             ContentLength=#content,
-            MessageID=""..(os.epoch()+os.getComputerID()*1000);
+            MessageID=""..(os.epoch()..os.getComputerID());
         }
         Server:sendMessage(payload);
     end
