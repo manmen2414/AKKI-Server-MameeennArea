@@ -55,7 +55,7 @@ local function newClient(from, pos)
             ReplyMessageID = replyMessageID,
             YourName=self.name,
             YourPosition=self.position,
-            YourID=MServerClient.id,
+            YourID=self.id,
             From="ALLCORE",
             Content=content,
             ContentLength=#content,
