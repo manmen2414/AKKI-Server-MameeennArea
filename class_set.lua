@@ -148,5 +148,27 @@ return {
         flush = function() end,
         ---@param line string
         writeLine = function(line) end,
+    },
+    ---@class Inventory
+    inventory = {
+        size          = function() return -1 end,
+        ---@return {name:string,count:number}[]
+        list          = function() return {} end,
+        ---@param slot number
+        getItemDetail = function(slot) return {} end,
+        ---@param slot number
+        getItemLimit  = function(slot) return -1 end,
+        ---@param toName string
+        ---@param fromSlot number
+        ---@param limit number
+        ---@param toSlot string
+        ---@return integer
+        pushItems     = function(toName, fromSlot, limit, toSlot) return -1 end,
+        ---@param fromName string
+        ---@param fromSlot number
+        ---@param limit number
+        ---@param toSlot string
+        ---@return integer
+        pullItems     = function(fromName, fromSlot, limit, toSlot) return -1 end,
     }
 }
