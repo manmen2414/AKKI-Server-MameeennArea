@@ -42,7 +42,7 @@ local function receivePackagerTask()
         if not sendingCardboard[item.nbt] then
           local sucessed = frogport.pushItems(ids.receivePackager, index)
           if sucessed > 0 then
-            writeLog("[RECE] " .. item.nbt, colors.green)
+            writeLog("[RECV] " .. item.nbt, colors.green)
           end
         end
       end
