@@ -170,5 +170,26 @@ return {
         ---@param toSlot string
         ---@return integer
         pullItems     = function(fromName, fromSlot, limit, toSlot) return -1 end,
+    },
+    ---@class TrainStation Create_Station
+    trainStation = {
+        assemble = function() end,
+        disassemble = function() end,
+        ---@param assemblyMode boolean
+        setAssemblyMode = function(assemblyMode) end,
+        isInAssemblyMode = function() return false end,
+        getStationName = function() return "" end,
+        ---@param name string
+        setStationName = function(name) end,
+        isTrainPresent = function() return false end,
+        isTrainImminent = function() return false end,
+        isTrainEnroute = function() return false end,
+        getTrainName = function() return "" end,
+        ---@param name string
+        setTrainName = function(name) end,
+        hasSchedule = function() return false end,
+        getSchedule = function() return {} end,
+        ---@param schedule string
+        setSchedule = function(schedule) return {} end,
     }
 }
