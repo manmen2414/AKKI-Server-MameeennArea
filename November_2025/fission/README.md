@@ -1,0 +1,1 @@
+https://github.com/MikaylaFischler/cc-mek-scada のRTUを用いてDiscordにメッセージを送っています。
