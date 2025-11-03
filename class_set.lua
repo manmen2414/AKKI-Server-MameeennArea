@@ -160,8 +160,8 @@ return {
         getItemLimit  = function(slot) return -1 end,
         ---@param toName string
         ---@param fromSlot number
-        ---@param limit number
-        ---@param toSlot string
+        ---@param limit? number
+        ---@param toSlot? string
         ---@return integer
         pushItems     = function(toName, fromSlot, limit, toSlot) return -1 end,
         ---@param fromName string
